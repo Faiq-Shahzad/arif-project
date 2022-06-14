@@ -12,5 +12,15 @@ export default function App() {
   const [date, setDate] = useState("2022-06-15")
   const [value, setValue] = React.useState('male');
 
+  return (
+    <View style={{ flex: 1, alignItems: 'center'}}>
+
+      <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
+        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>Sign Up</Text>
+        <Icon name="sign-up" size={20} color="white" style={{}}/>
+      </View>
+
+    </View>
+
 
 }
