@@ -5,8 +5,9 @@ import DatePicker from 'react-native-datepicker'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
-export default function App() {
+export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("");
 
 
   return (
@@ -15,9 +16,9 @@ export default function App() {
       <View style={{backgroundColor:"#f52f2f", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
         <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>MeDCom</Text>
       </View>
-      <View style={{flexDirection:"row", backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>
-        <Icon name="login" size={20} color="black" style={{}}/>
-        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>Login</Text>
+      <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>
+        
+        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><Icon name="login" size={24} color="white" style={{fontWeight:"bold"}}/> Login</Text>
       </View>
         
       <View style={{ marginTop:"auto", marginBottom:"auto"}}>
@@ -28,7 +29,7 @@ export default function App() {
 
       <Text style={{color:"grey"}}>__________________________________________</Text>
       <Text style={{marginTop:20}}>Dont have an account?</Text>
-      <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={()=> getData()}>Sign Up</Button>
+      <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={()=> navigation.navigate("Signup")}>Sign Up</Button>
       
       
     </View>
