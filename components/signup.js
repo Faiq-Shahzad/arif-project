@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, Alert, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import {Button, RadioButton} from 'react-native-paper';
-// import DatePicker from 'react-native-datepicker';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import DatePicker from 'react-native-datepicker';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function App() {
 
@@ -17,7 +17,7 @@ export default function App() {
 
       <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
         <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>Sign Up</Text>
-        <Icon name="sign-up" size={20} color="white" style={{}}/>
+        <Icon name="person_add" size={20} color="white" style={{}}/>
       </View>
 
 
@@ -39,8 +39,8 @@ export default function App() {
           <TextInput placeholder="e.g: 0333-5558444" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
           <Text style={{marginTop:15}}>Date of Birth:</Text>
           
-          {/* <DatePicker style={{width: "100%"}} date={date} mode="date" placeholder="select date" format="YYYY-MM-DD" minDate="2022-05-01" maxDate="2023-06-01" confirmBtnText="Confirm"
-            cancelBtnText="Cancel" customStyles={{ dateIcon: {position: 'absolute', left: 0, top: 4, marginLeft: 0}, dateInput: { marginLeft: 36, borderRadius:5, borderColor:"lightgrey"} }} /> */}
+          <DatePicker style={{width: "100%"}} date={date} mode="date" placeholder="select date" format="YYYY-MM-DD" minDate="2022-05-01" maxDate="2023-06-01" confirmBtnText="Confirm"
+            cancelBtnText="Cancel" customStyles={{ dateIcon: {position: 'absolute', left: 0, top: 4, marginLeft: 0}, dateInput: { marginLeft: 36, borderRadius:5, borderColor:"lightgrey"} }} />
 
           <Text style={{marginTop:15}}>Gender:</Text>
 
