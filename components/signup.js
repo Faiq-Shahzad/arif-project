@@ -16,7 +16,7 @@ export default function SignupScreen({navigation}) {
     <View style={{ flex: 1, alignItems: 'center'}}>
 
       <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
-        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><Icon name="person_add" size={20} color="white" style={{}}/> Sign Up</Text>
+        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><Icon name="person" size={24} color="white" style={{fontWeight:"bold"}}/> Sign Up</Text>
         
       </View>
 
