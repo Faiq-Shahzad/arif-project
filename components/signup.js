@@ -4,7 +4,7 @@ import {Button, RadioButton} from 'react-native-paper';
 import DatePicker from 'react-native-datepicker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function App() {
+export default function SignupScreen({navigation}) {
 
   const [signup_name, setSignUpName] = useState("")
   const [signup_password, setSignUpPassword] = useState("")
@@ -16,10 +16,9 @@ export default function App() {
     <View style={{ flex: 1, alignItems: 'center'}}>
 
       <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
-        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>Sign Up</Text>
-        <Icon name="person_add" size={20} color="white" style={{}}/>
+        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><Icon name="person_add" size={20} color="white" style={{}}/> Sign Up</Text>
+        
       </View>
-
 
       <ScrollView style={{width:"95%"}}>
         
@@ -56,8 +55,10 @@ export default function App() {
           <TouchableOpacity style={{alignItems:"center", backgroundColor:"antiquewhite", padding:5, borderRadius:5, borderWidth:1, borderColor:"lightgrey", marginTop:5}}>
             <Text style={{fontSize:12}}>Upload Image</Text></TouchableOpacity> 
         </View>
-        <Button mode='contained' style={{marginTop:20, padding:5}} 
-          >Sign Up</Button> 
+        <Button mode='contained' style={{marginTop:20, padding:5}}>Sign Up</Button> 
+
+        <Text style={{marginTop:30, textAlign:"center"}}>Already have an account?</Text>
+        <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={() => NavigationPreloadManager.navigate("Login")}>Login</Button> 
       </ScrollView>
 
     </View>
