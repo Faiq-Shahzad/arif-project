@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from "./components/login.js";
 import SignupScreen from "./components/signup.js";
+import PatientHome from "./components/patienthome.js";
+import DoctorHome from "./components/doctorhome.js";
 
 function HomeScreen({navigation}) {
   return (
@@ -24,12 +26,14 @@ function HomeScreen({navigation}) {
 const Stack = createNativeStackNavigator();
 
 function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: '' }}/>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen name="Patient Home" component={PatientHome} options={{ title: 'HOME' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
