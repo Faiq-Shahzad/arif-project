@@ -5,7 +5,7 @@ import {Button, RadioButton, TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
-export default function LoginScreen({navigation}) {
+export default function MakeAppointment({navigation}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
 

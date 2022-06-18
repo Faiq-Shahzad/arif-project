@@ -8,6 +8,7 @@ import LoginScreen from "./components/login.js";
 import SignupScreen from "./components/signup.js";
 import PatientHome from "./components/patienthome.js";
 import DoctorHome from "./components/doctorhome.js";
+import MakeAppointment from './components/makeappointments.js';
 
 function HomeScreen({navigation}) {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Patient Home" component={PatientHome} options={{ title: 'HOME' }}/>
+        <Stack.Screen name="Make Appointment" component={MakeAppointment}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
