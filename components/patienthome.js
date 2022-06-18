@@ -11,15 +11,37 @@ import Profile from './profile';
 
 
 function SearchDoctors({navigation}){
-  return(
-    <View style={{flex:1, alignItems:"center"}}>
-      <TextInput ></TextInput>
-      <Text>ABCD</Text>
-    </View>
-  );
-
-}
-
+    const [doctors, getDoctors] = useState([{"name":"Faiq Shahzad", "speciality":"MBBS | Surgeon", "time":"13:00"}]);
+    return(
+      <View style={{flex:1, marginTop:10, alignItems:"center"}}>
+        <View style={{flexDirection:"row", width:"85%", marginTop:30}}>
+            <MaterialCommunityIcons name="account-search" size={30} style={{padding:7}} color="grey" />
+            <TextInput style={{width:"80%", borderRadius:30, borderWidth:1, padding:7, backgroundColor:"lightgrey"}} placeholder="Search">
+            </TextInput>
+        </View>
+        
+        {doctors.map( (element) =>{
+  
+          return(
+  
+            <View style={{marginTop:30, width:"100%", alignItems:"center"}}>
+              <View style={{width:"85%", borderRadius:20, backgroundColor:"red", justifyContent:'center', padding:10}}>
+                <Text style={{fontSize:17, fontWeight:"bold", color:"white", padding:10, textAlign:"center"}}>Dr. {element.name}</Text>
+                <View style={{flexDirection:"row", justifyContent:"space-evenly"}}>
+                  <Text style={{fontSize:16, fontFamily:"sans-serif", color:"darkturquoise"}}>{element.speciality}</Text>
+                  <View style={{flexDirection:"row"}}>
+                    <MaterialCommunityIcons name="clock-time-three" size={24} color="white" />
+                    <Text style={{fontSize:16, fontFamily:"sans-serif", color:"white"}}>{element.time}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+  
+          );
+        })}
+      </View>
+    );
+  }
 export default function PatientHome({navigation}) {
 
   const Tab = createBottomTabNavigator();
