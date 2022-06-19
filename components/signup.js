@@ -13,6 +13,7 @@ export default function SignupScreen({navigation}) {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [open, setOpen] = useState(false)
   const [value, setValue] = React.useState('male');
+  const [selectedDate, setSelectedDate] = useState()
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -23,7 +24,7 @@ export default function SignupScreen({navigation}) {
   };
 
   const handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
+    setSelectedDate(date)
     hideDatePicker();
   };
 
@@ -53,7 +54,7 @@ export default function SignupScreen({navigation}) {
           <TextInput placeholder="e.g: 0333-5558444" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
           <Text style={{marginTop:15}}>Date of Birth:</Text>
           <TouchableOpacity style={{alignItems:"center", borderWidth:1, padding:5, borderRadius:5, borderColor:"lightgrey"}} onPress={showDatePicker}>
-            <Text style={{fontSize:15}}>Date</Text>
+            <Text style={{fontSize:15}}>{selectedDate?selectedDate.toLocaleDateString():'Select Date'}</Text>
           </TouchableOpacity>
 
           <DateTimePickerModal

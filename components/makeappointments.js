@@ -20,6 +20,7 @@ function MakeAppointment({navigation}) {
     {label: '1430', value: '1430'},
     
   ]);
+  const [selectedDate, setSelectedDate] = useState()
   const [details, setDetails] = useState({"name":"Faiq Shahzad", "speciality":"MBBS | Surgeon", "opentime":"1300", "closetime":"1500", "fees":"Rs. 2500"})
 
   const showDatePicker = () => {
@@ -31,7 +32,7 @@ function MakeAppointment({navigation}) {
   };
 
   const handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
+    setSelectedDate(date)
     hideDatePicker();
   };
 
@@ -61,9 +62,16 @@ function MakeAppointment({navigation}) {
         <Text style={{marginTop:5}}>Select Date:</Text>
         <View style={{width:"100%", backgroundColor:"white", alignItems:"center", marginTop:10}}>
         <TouchableOpacity style={{alignItems:"center", width:"90%", borderWidth:1, padding:10, borderRadius:10, borderColor:"green"}} onPress={showDatePicker}>
-          <Text style={{color:"green", fontSize:15}}>Date</Text>
+          <Text style={{fontSize:15}}>{selectedDate?selectedDate.toLocaleDateString():'Select Date'}</Text>
         </TouchableOpacity>
         </View>
+
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
 
         <Text style={{marginTop:20}}>Select Time:</Text>
         <View style={{alignItems:"center"}}>
@@ -90,12 +98,7 @@ function MakeAppointment({navigation}) {
           <TextInput style={{alignItems:"center", width:"90%", borderWidth:1, padding:10, borderRadius:10, borderColor:"green"}} value={details.fees}/>
         </View>
 
-        <DateTimePickerModal
-          isVisible={isDatePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-        />
+        
 
         <View style={{alignItems:"center"}}>
           <Button mode='contained' style={{marginTop:20, width:"80%", fontSize:5, padding:5, borderRadius:50, backgroundColor:"red"}}>Confirm Appointment</Button> 
