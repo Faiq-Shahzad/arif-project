@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
+  const [isDoctor, setIsDoctor] = useState(true);
 
 
   return (
@@ -23,7 +24,7 @@ export default function LoginScreen({navigation}) {
       <View style={{ marginTop:"auto", marginBottom:"auto"}}>
         <TextInput label="Email" style={{borderColor:"black",borderWidth:1, marginTop:10, width:270}} ></TextInput>
         <TextInput label="Password" style={{borderColor:"black", borderWidth:1, marginTop:10, width:270}}></TextInput>
-        <Button mode='contained' style={{marginTop:20, padding:5, backgroundColor:"green"}} onPress={()=> navigation.navigate("Patient Home")}>Login</Button>
+        <Button mode='contained' style={{marginTop:20, padding:5, backgroundColor:"green"}} onPress={()=> isDoctor ? navigation.navigate("Doctor Home") : navigation.navigate("Patient Home")}>Login</Button>
       </View>
 
       <Text style={{color:"grey"}}>__________________________________________</Text>

@@ -35,6 +35,7 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Patient Home" component={PatientHome} options={{ title: 'HOME' }}/>
+        <Stack.Screen name="Doctor Home" component={DoctorHome} options={{ title: 'HOME' }}/>
         <Stack.Screen name="Make Appointment" component={MakeAppointment}/>
       </Stack.Navigator>
     </NavigationContainer>
