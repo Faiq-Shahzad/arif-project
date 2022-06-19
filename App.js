@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, Alert, TouchableOpacity, ScrollView} from 'react-native';
 import {Button, RadioButton, TextInput} from 'react-native-paper';
@@ -24,11 +25,14 @@ function HomeScreen({navigation}) {
   );
 }
 
+
 const Stack = createNativeStackNavigator();
+
 
 function App() {
 
   return (
+
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
