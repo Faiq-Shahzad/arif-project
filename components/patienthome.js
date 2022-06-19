@@ -49,7 +49,6 @@ function SearchDoctors({navigation}){
 export default function PatientHome({navigation}) {
 
   const Tab = createBottomTabNavigator();
-  const Stack = createNativeStackNavigator();
 
   return (
 
