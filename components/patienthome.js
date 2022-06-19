@@ -20,29 +20,30 @@ function SearchDoctors({navigation}){
             <TextInput style={{width:"80%", borderRadius:30, borderWidth:1, padding:7, backgroundColor:"lightgrey"}} placeholder="Search">
             </TextInput>
         </View>
-        
-        {doctors.map( (element) =>{
-  
-          return(
 
-
-            <TouchableOpacity style={{width:"100%"}} onPress={()=> navigation.navigate("Make Appointment")}>
-                <View style={{marginTop:30, width:"100%", alignItems:"center"}}>
-                <View style={{width:"85%", borderRadius:20, backgroundColor:"red", justifyContent:'center', padding:10}}>
-                    <Text style={{fontSize:17, fontWeight:"bold", color:"white", padding:10, textAlign:"center"}}>Dr. {element.name}</Text>
-                    <View style={{flexDirection:"row", justifyContent:"space-evenly"}}>
-                    <Text style={{fontSize:16, fontFamily:"sans-serif", color:"darkturquoise"}}>{element.speciality}</Text>
-                    <View style={{flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="clock-time-three" size={24} color="white" />
-                        <Text style={{fontSize:16, fontFamily:"sans-serif", color:"white"}}>{element.time}</Text>
-                    </View>
-                    </View>
-                </View>
-                </View>
-            </TouchableOpacity>
-  
-          );
-        })}
+        <ScrollView style={{width:"100%"}}>
+          
+          {doctors.map( (element) =>{
+    
+            return(
+              <TouchableOpacity style={{width:"100%"}} onPress={()=> navigation.navigate("Make Appointment")}>
+                  <View style={{marginTop:30, width:"100%", alignItems:"center"}}>
+                  <View style={{width:"85%", borderRadius:20, backgroundColor:"red", justifyContent:'center', padding:10}}>
+                      <Text style={{fontSize:17, fontWeight:"bold", color:"white", padding:10, textAlign:"center"}}>Dr. {element.name}</Text>
+                      <View style={{flexDirection:"row", justifyContent:"space-evenly"}}>
+                        <Text style={{fontSize:16, fontFamily:"sans-serif", color:"darkturquoise"}}>{element.speciality}</Text>
+                        <View style={{flexDirection:"row"}}>
+                            <MaterialCommunityIcons name="clock-time-three" size={24} color="white" />
+                            <Text style={{fontSize:16, fontFamily:"sans-serif", color:"white"}}>{element.time}</Text>
+                        </View>
+                      </View>
+                  </View>
+                  </View>
+              </TouchableOpacity>
+    
+            );
+          })}
+        </ScrollView>
       </View>
     );
   }

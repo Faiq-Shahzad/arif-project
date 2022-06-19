@@ -85,7 +85,7 @@ function MakeAppointment({navigation}) {
           </View>
         </View>
 
-        <Text style={{marginTop:20}}>Select Date:</Text>
+        <Text style={{marginTop:20}}>Checkup Fees:</Text>
         <View style={{width:"100%", backgroundColor:"white", alignItems:"center", marginTop:10}}>
           <TextInput style={{alignItems:"center", width:"90%", borderWidth:1, padding:10, borderRadius:10, borderColor:"green"}} value={details.fees}/>
         </View>
