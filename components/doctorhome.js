@@ -19,8 +19,8 @@ function SearchDoctors({navigation}){
 
     const confirmAppointment = (key) =>{
         Alert.alert(
-            "Alert Title",
-            "My Alert Msg",
+            "Pending",
+            "Confirm the Appoinmtment",
             [
               {
                 text: "Cancel",
@@ -55,7 +55,7 @@ function SearchDoctors({navigation}){
             <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>Pending</Text>
         </TouchableOpacity>
 
-        {displayPending ? 
+        {(displayPending || appointment != 0) ? 
         <ScrollView style={{flex:1, width:"100%", padding:2}}>
           
         {appointment.map( (element, index) =>{
@@ -83,7 +83,7 @@ function SearchDoctors({navigation}){
             <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>In Progress</Text>
         </TouchableOpacity>
 
-        {displayInProgress ? 
+        {(displayInProgress || inprogress != 0) ? 
         <ScrollView style={{flex:1, width:"100%", padding:2}}>
           
           {inprogress.map( (element) =>{
@@ -109,7 +109,7 @@ function SearchDoctors({navigation}){
             <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>Completed</Text>
         </TouchableOpacity>
         
-        {displayCompleted ? 
+        {(displayCompleted || completed != 0) ? 
         <ScrollView style={{flex:1, width:"100%", padding:2}}>
           
           {completed.map( (element) =>{
