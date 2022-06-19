@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
-  const [isDoctor, setIsDoctor] = useState(true);
+  const [isDoctor, setIsDoctor] = useState(false);
 
 
   return (

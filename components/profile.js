@@ -5,16 +5,33 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
-export default function Profile({navigation}) {
+export default function Profile({navigation, route}) {
+  const data = route.params
+  
   const [signup_name, setSignUpName] = useState("")
   const [signup_password, setSignUpPassword] = useState("")
   const [signup_confirm, setSignUpConfirm] = useState("")
-  const [details, setDetails] = useState({"name":"Faiq Shahzad", "email":"faiqshahad933@gmail.com", "phn_number":"0331-5558407", "dob":"15-06-2001", })
+  // const [details, setDetails] = useState()
+  var details;
+  const [patientDetails, setPatientDetails] = useState()
   const [disabled, setDisabled] = useState(true)
 
   const edit = () =>{
     setDisabled(false);
   }
+
+  const viewProfile = () =>{
+    console.log(data.doctor)
+    if (data.doctor === "doctor"){
+      console.log("true")
+      details = {"name":"Faiq Shahzad", "email":"faiqshahad933@gmail.com", "phn_number":"0331-5558407", "dob":"15-06-2001" }
+      console.log(details)
+    }else{
+      details = {"name":"Muhammad Ahmed", "email":"th3Un1qu3m4n@gmail.com", "phn_number":"0320-2020720", "dob":"18-08-2000"}
+    }
+  }
+
+  viewProfile();
 
   return (
     <View style={{ flex: 1, alignItems: 'center'}}>

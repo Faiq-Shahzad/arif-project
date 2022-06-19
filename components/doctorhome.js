@@ -136,6 +136,8 @@ function SearchDoctors({navigation}){
   }
 export default function DoctorHome({navigation}) {
 
+  const [doctor, setDoctor] = useState("doctor")
+
   const Tab = createBottomTabNavigator();
 
   return (
@@ -143,7 +145,7 @@ export default function DoctorHome({navigation}) {
     <Tab.Navigator>
         <Tab.Screen name="Search Doctors" component={SearchDoctors} options={{ title: "Appointments", tabBarIcon:({color})=>(
         <Icon name="check-circle" size={24} color={color} />)}}/>
-        <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon:({color})=>(
+        <Tab.Screen name="Profile" component={Profile} initialParams={{doctor}} options={{ tabBarIcon:({color})=>(
         <MaterialCommunityIcons name="account" size={24} color={color} />)}}/>
     </Tab.Navigator>
   );

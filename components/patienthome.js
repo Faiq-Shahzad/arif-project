@@ -48,6 +48,7 @@ function SearchDoctors({navigation}){
     );
   }
 export default function PatientHome({navigation}) {
+  const [patient, setPatient] = useState("patient");
 
   const Tab = createBottomTabNavigator();
 
@@ -58,7 +59,7 @@ export default function PatientHome({navigation}) {
         <MaterialCommunityIcons name="doctor" size={24} color={color} />)}}/>
         <Tab.Screen name="Recent" component={RecentAppointments} options={{ tabBarIcon:({color})=>(
         <MaterialCommunityIcons name="history" size={24} color={color} />)}}/>
-        <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon:({color})=>(
+        <Tab.Screen name="Profile" component={Profile} initialParams={{patient}} options={{ tabBarIcon:({color})=>(
         <MaterialCommunityIcons name="account" size={24} color={color} />)}}/>
     </Tab.Navigator>
   );
