@@ -20,7 +20,7 @@ function SearchDoctors({navigation}){
     const confirmAppointment = (key) =>{
         Alert.alert(
             "Pending",
-            "Confirm the Appoinmtment",
+            "Confirm the Appointment",
             [
               {
                 text: "Cancel",
