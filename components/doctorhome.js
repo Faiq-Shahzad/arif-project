@@ -55,7 +55,7 @@ function SearchDoctors({navigation}){
             <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>Pending</Text>
         </TouchableOpacity>
 
-        {(displayPending || appointment != 0) ? 
+        {displayPending ? 
         <ScrollView style={{flex:1, width:"100%", padding:2}}>
           
         {appointment.map( (element, index) =>{
@@ -83,7 +83,7 @@ function SearchDoctors({navigation}){
             <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>In Progress</Text>
         </TouchableOpacity>
 
-        {(displayInProgress || inprogress != 0) ? 
+        {displayInProgress ? 
         <ScrollView style={{flex:1, width:"100%", padding:2}}>
           
           {inprogress.map( (element) =>{
@@ -109,7 +109,7 @@ function SearchDoctors({navigation}){
             <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>Completed</Text>
         </TouchableOpacity>
         
-        {(displayCompleted || completed != 0) ? 
+        {displayCompleted ? 
         <ScrollView style={{flex:1, width:"100%", padding:2}}>
           
           {completed.map( (element) =>{
