@@ -58,14 +58,14 @@ function MakeAppointment({navigation}) {
       </Card>
       
       <View style={{width:"90%", backgroundColor:"white", padding:10, marginTop:15, borderRadius:5}}>
-        <Text style={{marginTop:5}}>Select Date:</Text>
+        <Text style={{marginTop:5, color:'gray'}}>Select Date:</Text>
         <View style={{width:"100%", backgroundColor:"white", alignItems:"center", marginTop:10}}>
         <TouchableOpacity style={{alignItems:"center", width:"90%", borderWidth:1, padding:10, borderRadius:10, borderColor:"green"}} onPress={showDatePicker}>
           <Text style={{color:"green", fontSize:15}}>Date</Text>
         </TouchableOpacity>
         </View>
 
-        <Text style={{marginTop:20}}>Select Time:</Text>
+        <Text style={{marginTop:20, color:'gray'}}>Select Time:</Text>
         <View style={{alignItems:"center"}}>
           <View style={{alignItems: 'center', justifyContent: 'center', paddingHorizontal: 15, marginTop:10, borderRadius:10}}>
             <DropDownPicker
@@ -85,7 +85,7 @@ function MakeAppointment({navigation}) {
           </View>
         </View>
 
-        <Text style={{marginTop:20}}>Select Date:</Text>
+        <Text style={{marginTop:20, color:'gray'}}>Select Date:</Text>
         <View style={{width:"100%", backgroundColor:"white", alignItems:"center", marginTop:10}}>
           <TextInput style={{alignItems:"center", width:"90%", borderWidth:1, padding:10, borderRadius:10, borderColor:"green"}} value={details.fees}/>
         </View>

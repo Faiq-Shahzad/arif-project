@@ -31,10 +31,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: '' }}/>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="Patient Home" component={PatientHome} options={{ title: 'HOME' }}/>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Signup" component={SignupScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Patient Home" component={PatientHome} options={{ headerShown: false }}/>
         <Stack.Screen name="Make Appointment" component={MakeAppointment}/>
       </Stack.Navigator>
     </NavigationContainer>

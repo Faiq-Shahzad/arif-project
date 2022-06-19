@@ -10,7 +10,7 @@ export default function LoginScreen({navigation}) {
 
 
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center', paddingBottom:25, backgroundColor:'rgba(0,0,0,0.05)'}}>
 
       <View style={{backgroundColor:"#f52f2f", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
         <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>MeDCom</Text>
@@ -24,11 +24,13 @@ export default function LoginScreen({navigation}) {
         <TextInput label="Email" style={{borderColor:"black",borderWidth:1, marginTop:10, width:270}} ></TextInput>
         <TextInput label="Password" style={{borderColor:"black", borderWidth:1, marginTop:10, width:270}}></TextInput>
         <Button mode='contained' style={{marginTop:20, padding:5, backgroundColor:"green"}} onPress={()=> navigation.navigate("Patient Home")}>Login</Button>
+        <View style={{justifyContent:'center', alignItems:'center'}}>
+          <Text style={{color:"grey", marginTop:40}}>__________________________________________</Text>
+          <Text style={{marginTop:20}}>Dont have an account?</Text>
+          <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={()=> navigation.navigate("Signup")}>Sign Up</Button>
+        </View>
       </View>
 
-      <Text style={{color:"grey"}}>__________________________________________</Text>
-      <Text style={{marginTop:20}}>Dont have an account?</Text>
-      <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={()=> navigation.navigate("Signup")}>Sign Up</Button>
       
       
     </View>
