@@ -31,7 +31,9 @@ export const AuthProvider = ({children}) =>{
                         console.log(e);
                     }
                 },
-            }}> {children}
+            }}
+            > 
+            {children}
         </AuthContext.Provider>
-    )
+    );
 }
