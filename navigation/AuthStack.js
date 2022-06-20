@@ -1,8 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { Text, View, FlatList, Alert, TouchableOpacity, ScrollView, ImageBackground} from 'react-native';
-import {Button, RadioButton, TextInput} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from "../components/login.js";
 import SignupScreen from "../components/signup.js";

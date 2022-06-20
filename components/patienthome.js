@@ -1,21 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Text, View, Image,FlatList, Alert, TouchableOpacity, ScrollView, TextInput} from 'react-native';
-import {Button, RadioButton} from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MakeAppointment from './makeappointments.js';
-import RecentAppointments from './recentappointments.js';
 import Prescription from './prescription.js';
 import Profile from './profile';
 import StarRating from 'react-native-star-rating';
+import { AuthContext } from '../navigation/AuthProvider.js';
 
 
 function SearchDoctors({navigation}){
     const [doctors, getDoctors] = useState([{"name":"Faiq Shahzad", "speciality":"MBBS | Surgeon", "time":"11:00 - 1550", "star":"3.5"},{"name":"Fazal Khan", "speciality":"MBBS | Biologist", "time":"800 - 1200", "star":"4.7"}]);
 
+    const {user} = useContext(AuthContext);
     // const onStarRatingPress = (rating) => {
     //   this.setState({
     //     starCount: rating
@@ -99,6 +95,9 @@ function SearchDoctors({navigation}){
                               starSize={20}
                               starStyle={{color:'blue'}}
                             />
+                      </View>
+                      <View style={{flexDirection:"row", justifyContent:'flex-start', marginTop:5}}>
+                      <Text>user.uid</Text>
                       </View>
                     </View>
                   </View>

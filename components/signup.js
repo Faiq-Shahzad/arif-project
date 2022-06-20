@@ -1,19 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Text, View, FlatList, Alert, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import {Button, RadioButton} from 'react-native-paper';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AuthContext } from '../navigation/AuthProvider';
 
 export default function SignupScreen({navigation}) {
 
-  const [signup_name, setSignUpName] = useState("")
-  const [signup_password, setSignUpPassword] = useState("")
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
   const [signup_confirm, setSignUpConfirm] = useState("")
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [open, setOpen] = useState(false)
   const [value, setValue] = React.useState('male');
-  const [selectedDate, setSelectedDate] = useState()
+  const [selectedDate, setSelectedDate] = useState();
+
+  const {register} = useContext(AuthContext)
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -45,9 +48,9 @@ export default function SignupScreen({navigation}) {
           <Text style={{marginTop:15}}>Last Name:</Text>
           <TextInput placeholder="e.g: Shahzad" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
           <Text style={{marginTop:15}}>Email:</Text>
-          <TextInput placeholder="e.g: abcdef@gmail.com" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
+          <TextInput placeholder="e.g: abcdef@gmail.com" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}} value={email} onChangeText={setEmail}></TextInput>
           <Text style={{marginTop:15}}>Password:</Text>
-          <TextInput placeholder="********" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
+          <TextInput placeholder="********" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}} value={password} onChangeText={setPassword}></TextInput>
           <Text style={{marginTop:15}}>Confirm Password:</Text>
           <TextInput placeholder="********" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
           <Text style={{marginTop:15}}>Phone Number:</Text>
@@ -78,7 +81,7 @@ export default function SignupScreen({navigation}) {
           <TouchableOpacity style={{alignItems:"center", backgroundColor:"antiquewhite", padding:5, borderRadius:5, borderWidth:1, borderColor:"lightgrey", marginTop:5}}>
             <Text style={{fontSize:12}}>Upload Image</Text></TouchableOpacity> 
         </View>
-        <Button mode='contained' style={{marginTop:20, padding:5}}>Sign Up</Button> 
+        <Button mode='contained' style={{marginTop:20, padding:5}} onPress={() => register(email, password)}>Sign Up</Button> 
 
         <Text style={{marginTop:30, textAlign:"center"}}>Already have an account?</Text>
         <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={() => navigation.navigate("Login")}>Login</Button> 
