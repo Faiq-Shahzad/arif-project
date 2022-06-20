@@ -2,12 +2,37 @@ import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, Alert, TouchableOpacity, ScrollView, ImageBackground, TextInput, SafeAreaView} from 'react-native';
 import {Button, RadioButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import auth from '@react-native-firebase/auth';
 
 
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [isDoctor, setIsDoctor] = useState(true);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing) return null;
+
+  const chkCredentials = ()=> {
+    if (isDoctor && user) { 
+      navigation.navigate("Doctor Home")
+    } else if (!isDoctor && user){ 
+      navigation.navigate("Patient Home")
+    } else {
+      Alert.alert("Invalid Credentials")
+    }
+  }
 
 
   return (
@@ -24,9 +49,9 @@ export default function LoginScreen({navigation}) {
         </View>
         
         <View style={{marginTop:"30%", justifyContent:"center", alignItems:"center"}}>
-          <TextInput placeholder="Email" style={{borderColor:"black",borderWidth:1, marginTop:10, width:270}} ></TextInput>
-          <TextInput placeholder="Password" style={{borderColor:"black", borderWidth:1, marginTop:10, width:270}}></TextInput>
-          <Button mode='contained' style={{marginTop:20, padding:5, backgroundColor:"green"}} onPress={()=> isDoctor ? navigation.navigate("Doctor Home") : navigation.navigate("Patient Home")}>Login</Button>
+          <TextInput placeholder="Email" style={{borderColor:"black",borderWidth:1, marginTop:10, width:270, fontSize:16, fontWeight:"bold", borderRadius:17, backgroundColor:'rgba(225, 45, 45, 0.35)'}} value={email} onChangeText={setEmail}></TextInput>
+          <TextInput placeholder="Password" style={{borderColor:"black", borderWidth:1, marginTop:10, width:270, fontSize:16, fontWeight:"bold", borderRadius:17, backgroundColor:'rgba(225, 45, 45, 0.35)'}} secureTextEntry value={password} onChangeText={setPassword}></TextInput>
+          <Button mode='contained' style={{marginTop:20, padding:5, backgroundColor:"green"}} onPress={chkCredentials}>Login</Button>
 
           <Text style={{color:"grey"}}>__________________________________________</Text>
           <Text style={{marginTop:20}}>Dont have an account?</Text>
