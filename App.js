@@ -16,7 +16,7 @@ function HomeScreen({navigation}) {
 
       <ImageBackground style={{flex: 1, alignItems:"center", width:"100%"}} source={{uri:"https://img.lovepik.com/background/20211029/medium/lovepik-flat-health-medical-service-hd-background-image_605816816.jpg"}} resizeMode="cover">
 
-        <View style={{alignItems:"center", padding:13, backgroundColor:'rgba(255, 61, 61, 0.5)', marginTop:"30%", borderRadius:20}}>
+        <View style={{alignItems:"center", padding:13, backgroundColor:'rgba(255, 61, 61, 0.5)', marginTop:"20%", borderRadius:20}}>
           <View style={{flexDirection:"row", marginBottom:"20%"}}>
             <Text style={{fontSize:50, fontWeight:"bold", color:"dodgerblue"}}>MeD</Text>
             <Text style={{fontSize:50, fontWeight:"bold", color:"white"}}>Com</Text>
