@@ -4,12 +4,8 @@ import {Button, RadioButton, TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from "./components/login.js";
-import SignupScreen from "./components/signup.js";
-import PatientHome from "./components/patienthome.js";
-import DoctorHome from "./components/doctorhome.js";
-import MakeAppointment from './components/makeappointments.js';
-import HandleAppointments from './components/HandleAppointment';
+import LoginScreen from "./login";
+import SignupScreen from "./signup";
 
 function HomeScreen({navigation}) {
   return (
@@ -32,4 +28,6 @@ function HomeScreen({navigation}) {
     </View>
   );
 }
+
+export default HomeScreen;
   

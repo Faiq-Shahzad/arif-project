@@ -1,13 +1,11 @@
 import React from "react";
-import Provider from "./navigation";
+import Providers from "./navigation";
 
 function App() {
 
   return (
 
-    <NavigationContainer>
-      
-    </NavigationContainer>
+    <Providers />
   );
 }
 
