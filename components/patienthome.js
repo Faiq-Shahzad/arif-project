@@ -10,13 +10,13 @@ import { AuthContext } from '../navigation/AuthProvider.js';
 
 function SearchDoctors({navigation}){
     const [doctors, getDoctors] = useState([{"name":"Faiq Shahzad", "speciality":"MBBS | Surgeon", "time":"11:00 - 1550", "star":"3.5"},{"name":"Fazal Khan", "speciality":"MBBS | Biologist", "time":"800 - 1200", "star":"4.7"}]);
-
-    const {user} = useContext(AuthContext);
     // const onStarRatingPress = (rating) => {
     //   this.setState({
     //     starCount: rating
     //   });
     // }
+
+   
   
 
     return(
@@ -111,6 +111,37 @@ function SearchDoctors({navigation}){
   }
 export default function PatientHome({navigation}) {
   const [patient, setPatient] = useState("patient");
+
+  const {user, logout} = useContext(AuthContext);
+
+  const signout = () =>{
+    Alert.alert(
+      "Log Out",
+      "Confirm Logout!",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Confirm", 
+          onPress: () =>logout()
+
+        }
+      ]
+    );
+
+  }
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={signout}>
+                <MaterialCommunityIcons name="logout" size={24} color="grey" />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   const Tab = createBottomTabNavigator();
 
