@@ -59,11 +59,6 @@ function SearchDoctors({navigation}){
             placeholder="Search">
             </TextInput>
         </View>
-        
-        {doctors.map( (element) =>{
-  
-          return(
-
 
             <TouchableOpacity style=
             {{marginTop:10, width:'90%', backgroundColor:'rgba(255,255,255,1)', padding:10, borderRadius:30, shadowColor: "#000",
@@ -114,6 +109,7 @@ function SearchDoctors({navigation}){
     );
   }
 export default function PatientHome({navigation}) {
+  const [patient, setPatient] = useState("patient");
 
   const Tab = createBottomTabNavigator();
 
@@ -124,7 +120,7 @@ export default function PatientHome({navigation}) {
         <MaterialCommunityIcons name="doctor" size={24} color={color} />)}}/>
         <Tab.Screen name="Prescriptions" component={Prescription} options={{ tabBarIcon:({color})=>(
         <MaterialCommunityIcons name="history" size={24} color={color} />)}}/>
-        <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon:({color})=>(
+        <Tab.Screen name="Profile" component={Profile} initialParams={{patient}} options={{ tabBarIcon:({color})=>(
         <MaterialCommunityIcons name="account" size={24} color={color} />)}}/>
     </Tab.Navigator>
   );

@@ -1,23 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, Alert, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import {Button, RadioButton} from 'react-native-paper';
-import DatePicker from '@react-native-community/datetimepicker'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function SignupScreen({navigation}) {
 
   const [signup_name, setSignUpName] = useState("")
   const [signup_password, setSignUpPassword] = useState("")
   const [signup_confirm, setSignUpConfirm] = useState("")
-  const [date, setDate] = useState(new Date())
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [open, setOpen] = useState(false)
   const [value, setValue] = React.useState('male');
+  const [selectedDate, setSelectedDate] = useState()
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date)
+    hideDatePicker();
+  };
 
   return (
     <View style={{ flex: 1, alignItems: 'center'}}>
 
       <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
-        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><Icon name="person" size={24} color="white" style={{fontWeight:"bold"}}/> Sign Up</Text>
+        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><MaterialCommunityIcons name="account-plus" size={24} color="white" style={{fontWeight:"bold"}}/> Sign Up</Text>
         
       </View>
 
@@ -38,28 +53,16 @@ export default function SignupScreen({navigation}) {
           <Text style={{marginTop:15}}>Phone Number:</Text>
           <TextInput placeholder="e.g: 0333-5558444" style={{marginTop:5, borderColor:"lightgrey", borderRadius:5, borderWidth:1, padding:3}}></TextInput>
           <Text style={{marginTop:15}}>Date of Birth:</Text>
-          
-          {/* {open==true ?
-          <DatePicker style={{width: "100%"}} value={date} mode="date" placeholder="select date" format="YYYY-MM-DD" minDate="2022-05-01" maxDate="2023-06-01" confirmBtnText="Confirm"
-          cancelBtnText="Cancel" customStyles={{ dateIcon: {position: 'absolute', left: 0, top: 4, marginLeft: 0}, dateInput: { marginLeft: 36, borderRadius:5, borderColor:"lightgrey"} }} onDateChange={setDate}/> :console.log("ABC")} */}
-          
-            {/* <Button title="Open" onPress={() => setOpen(true)} />
-            <DatePicker
-              modal
-              open={open}
-              date={date}
-              value={date}
-              onConfirm={(date) => {
-                setOpen(false)
-                setDate(date)
-              }}
-              onCancel={() => {
-                setOpen(false)
-              }}
-            /> */}
+          <TouchableOpacity style={{alignItems:"center", borderWidth:1, padding:5, borderRadius:5, borderColor:"lightgrey"}} onPress={showDatePicker}>
+            <Text style={{fontSize:15}}>{selectedDate?selectedDate.toLocaleDateString():'Select Date'}</Text>
+          </TouchableOpacity>
 
-          <Button mode='outlined' style={{marginTop:20, padding:5}} 
-            onPress={() => <DatePicker androidVariant="nativeAndroid" value={date} date={date} onDateChange={setDate} />}></Button>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
 
           <Text style={{marginTop:15}}>Gender:</Text>
 

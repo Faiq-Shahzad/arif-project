@@ -1,37 +1,109 @@
 import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, Alert, TouchableOpacity, ScrollView} from 'react-native';
 import {Button, RadioButton, TextInput} from 'react-native-paper';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+function RecentAppointments({navigation}){
+  const [appointment, setAppointment] = useState([{"name":"Dr. Faiq Shahzad", "date":"28-06-2022", "time":"13:00", "fees":"2500"}]);
+  const [completed, setCompleted] = useState([{"name":"Muhammad Ahmed", "date":"28-06-2022", "time":"13:00", "fees":"2500"}]);
+  const [displayPending, setDisplayPending] = useState(true);
+  const [displayCompleted, setDisplayCompleted] = useState(true);
 
-export default function LoginScreen({navigation}) {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("");
+  const confirmAppointment = (key) =>{
+      Alert.alert(
+          "Pending",
+          "The Request is being processed",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", 
+              onPress: () =>console.log("OK Pressed") 
 
+            }
+          ]
+        );
+  }
 
-  return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+  const inProgress = (key, index) => {
 
-      <View style={{backgroundColor:"#f52f2f", width:"100%", alignItems:"center", padding:10, paddingTop:40}}>
-        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}>MeDCom</Text>
-      </View>
-      <View style={{backgroundColor:"dodgerblue", width:"100%", alignItems:"center", padding:10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>
+    appointment.map( (el) =>{
+      if (el.key == key){
+        setCompleted([...completed, el]);
+      }
+    })
+
+    setAppointment(list => appointment.filter(element => element.key != key))
+
+    console.log(appointment)
+    if (appointment.length == 0){
+      console.log(appointment.length)
+      setDisplayPending(false);
+    }
+  
+  }
+
+  return(
+    <View style={{flex:1}}>
+    
+      <TouchableOpacity style={{backgroundColor:"black", padding:13, borderWidth:1, borderColor:"lightgrey"}} 
+        onPress={()=> (displayPending) ? setDisplayPending(false) : setDisplayPending(true)}>
+          <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>Pending</Text>
+      </TouchableOpacity>
+
+      { (displayPending || appointment.length != 0) ? 
+      <ScrollView style={{flex:1, width:"100%", padding:2}}>
         
-        <Text style={{fontSize:25, fontWeight:"bold", color:"white"}}><Icon name="login" size={24} color="white" style={{fontWeight:"bold"}}/> Login</Text>
-      </View>
-        
-      <View style={{ marginTop:"auto", marginBottom:"auto"}}>
-        <TextInput label="Email" style={{borderColor:"black",borderWidth:1, marginTop:10, width:270}} ></TextInput>
-        <TextInput label="Password" style={{borderColor:"black", borderWidth:1, marginTop:10, width:270}}></TextInput>
-        <Button mode='contained' style={{marginTop:20, padding:5, backgroundColor:"green"}} onPress={()=> navigation.navigate("Patient Home")}>Login</Button>
-      </View>
+      {appointment.map( (element, index) =>{
 
-      <Text style={{color:"grey"}}>__________________________________________</Text>
-      <Text style={{marginTop:20}}>Dont have an account?</Text>
-      <Button mode='outlined' style={{marginTop:20, padding:5}} onPress={()=> navigation.navigate("Signup")}>Sign Up</Button>
+        return(
+          <TouchableOpacity style={{width:"100%"}} onPress={()=>confirmAppointment(element.key, index)}>
+              <View style={{marginTop:20, width:"100%", alignItems:"center"}}>
+                <View style={{flexDirection:"row", width:"85%", borderRadius:20, backgroundColor:"plum", justifyContent:'space-evenly', padding:10}}>
+                    <Text style={{fontSize:17, fontWeight:"bold", color:"white", padding:10, textAlign:"center"}}>{element.name}</Text>
+                    <View style={{flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
+                        <MaterialCommunityIcons name="clock-time-three" size={24} color="white" />
+                        <Text style={{fontSize:16, fontFamily:"sans-serif", color:"white"}}>{element.time}</Text>
+                    </View>
+                </View>
+              </View>
+          </TouchableOpacity>
+        );
+      })}
+      </ScrollView> : <View style={{width:0, height:0}}></View>}
+
+      <TouchableOpacity style={{backgroundColor:"black", padding:13, borderWidth:1, borderColor:"lightgrey"}} 
+        onPress={()=> (displayCompleted) ? setDisplayCompleted(false) : setDisplayCompleted(true)}>
+          <Text style={{marginLeft: 7, color:"white", fontSize:17, fontWeight:"bold"}}>History</Text>
+      </TouchableOpacity>
       
+      {(displayCompleted || completed.length != 0) ? 
+      <ScrollView style={{flex:1, width:"100%", padding:2}}>
+        
+        {completed.map( (element) =>{
+  
+          return(
+            <TouchableOpacity style={{width:"100%"}} onPress={()=> navigation.navigate("Make Appointment")}>
+                <View style={{marginTop:20, width:"100%", alignItems:"center"}}>
+                  <View style={{flexDirection:"row", width:"85%", borderRadius:20, backgroundColor:"plum", justifyContent:'space-evenly', padding:10}}>
+                      <Text style={{fontSize:17, fontWeight:"bold", color:"white", padding:10, textAlign:"center"}}>{element.name}</Text>
+                      <View style={{flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
+                          <MaterialCommunityIcons name="clock-time-three" size={24} color="white" />
+                          <Text style={{fontSize:16, fontFamily:"sans-serif", color:"white"}}>{element.time}</Text>
+                      </View>
+                  </View>
+                </View>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView> : <View style={{width:0, height:0}}></View>}
+
       
     </View>
   );
 }
+
+export default RecentAppointments;
