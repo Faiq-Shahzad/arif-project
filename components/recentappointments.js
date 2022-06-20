@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function RecentAppointments({navigation}){
-  const [appointment, setAppointment] = useState([{"name":"Dr. Faiq Shahzad", "date":"28-06-2022", "time":"13:00", "fees":"2500"}]);
-  const [completed, setCompleted] = useState([{"name":"Muhammad Ahmed", "date":"28-06-2022", "time":"13:00", "fees":"2500"}]);
+  const [appointment, setAppointment] = useState([{"name":"Dr. Faiq Shahzad", "date":"28-06-2022", "time":"13:00", "fees":"2500", 'status':'pending'}]);
+  const [completed, setCompleted] = useState([{"name":"Muhammad Ahmed", "date":"28-06-2022", "time":"13:00", "fees":"2500", 'status':'in-progress'}]);
   const [displayPending, setDisplayPending] = useState(true);
   const [displayCompleted, setDisplayCompleted] = useState(true);
 
@@ -55,7 +55,7 @@ function RecentAppointments({navigation}){
       </TouchableOpacity>
 
       { (displayPending || appointment.length != 0) ? 
-      <ScrollView style={{flex:1, width:"100%", padding:2}}>
+      <ScrollView style={{width:"100%", maxHeight:'30%', padding:2}}>
         
       {appointment.map( (element, index) =>{
 
@@ -81,12 +81,12 @@ function RecentAppointments({navigation}){
       </TouchableOpacity>
       
       {(displayCompleted || completed.length != 0) ? 
-      <ScrollView style={{flex:1, width:"100%", padding:2}}>
+      <ScrollView style={{maxHeight:'30%', width:"100%", padding:2}}>
         
         {completed.map( (element) =>{
   
           return(
-            <TouchableOpacity style={{width:"100%"}} onPress={()=> navigation.navigate("Make Appointment")}>
+            <TouchableOpacity style={{width:"100%"}} onPress={()=> navigation.navigate("Make Appointment", {status:'in-progress'})}>
                 <View style={{marginTop:20, width:"100%", alignItems:"center"}}>
                   <View style={{flexDirection:"row", width:"85%", borderRadius:20, backgroundColor:"plum", justifyContent:'space-evenly', padding:10}}>
                       <Text style={{fontSize:17, fontWeight:"bold", color:"white", padding:10, textAlign:"center"}}>{element.name}</Text>

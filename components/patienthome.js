@@ -59,7 +59,9 @@ function SearchDoctors({navigation}){
             placeholder="Search">
             </TextInput>
         </View>
-
+        {doctors.map( (element) =>{
+  
+            return(
             <TouchableOpacity style=
             {{marginTop:10, width:'90%', backgroundColor:'rgba(255,255,255,1)', padding:10, borderRadius:30, shadowColor: "#000",
               shadowOffset: {

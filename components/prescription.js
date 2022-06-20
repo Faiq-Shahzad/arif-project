@@ -5,17 +5,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-export default function Prescription({navigation}) {
+export default function Prescription(props) {
 
-    React.useLayoutEffect(() => {
-        navigation.setOptions({
-          headerRight: () => (
-            <TouchableOpacity style={{alignItems:"center", padding:10, paddingHorizontal:25, borderRadius:10, marginHorizontal:15, backgroundColor:"green"}} onPress={()=>{Alert.alert("Data Submitted", "YEAAAH!")}}>
-                    <Text style={{color:"white", fontSize:15}}>Submit</Text>
-            </TouchableOpacity>
-          ),
-        });
-      }, [navigation]);
+    const status = props.status
 
     const [diagnosis, setDiagnosis] = useState();
     
@@ -40,7 +32,7 @@ export default function Prescription({navigation}) {
             Alert.alert("Missing Fields", "Please fill all the fields")
             return
         }
-        setPrescription([...prescription, {key:Math.random(), medicine:medicineName.trim(), amountDay:amountDay, totalDays:totalDays}]);
+        setPrescription([{key:Math.random(), medicine:medicineName.trim(), amountDay:amountDay, totalDays:totalDays}, ...prescription]);
     };
     const deletePrescription = (key) => {
         const newList = prescription.filter( el => el.key!=key)
@@ -62,8 +54,8 @@ export default function Prescription({navigation}) {
     };
 
   return (
-    <SafeAreaView style={{flex:1, padding:25, backgroundColor:"lightgray"}}>
-        <View style={{marginTop:5, justifyContent:'center', alignItems:'center', backgroundColor:'rgba(255,255,255,1)', padding:2, borderRadius:2, shadowColor: "#000",
+    <View style={{flex:1, paddingHorizontal:25}}>
+        <View style={{marginTop:5, marginHorizontal:25, justifyContent:'center', alignItems:'center', backgroundColor:'rgba(255,255,255,1)', padding:2, borderRadius:2, shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 2,
@@ -74,9 +66,14 @@ export default function Prescription({navigation}) {
         elevation: 5,}}>
             <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
                 <MaterialCommunityIcons style={{width:'10%'}} name="account-injury" size={30} color={'red'} />
+                {status==="in-progress"?
                 <TextInput  placeholderTextColor={'gray'} style={{width:'70%', color:'black', borderColor:'gray', borderBottomWidth:1, marginBottom:10, marginHorizontal:15}} placeholder="Diagnosis" onChangeText={setDiagnosis}></TextInput>
+                :
+                <Text style={{width:'70%', color:'black', borderColor:'gray', paddingVertical:10, marginHorizontal:15}} >Diagnosis: Some Fever</Text>
+                }
             </View>
         </View>
+        {status==="in-progress"?
       <View style={{marginTop:10, backgroundColor:'rgba(255,255,255,1)', padding:10, borderRadius:30, shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -94,8 +91,8 @@ export default function Prescription({navigation}) {
             <View style={{justifyContent:'center', alignItems:'center'}}>
                 <TextInput placeholderTextColor={'gray'} style={{ width:'100%', backgroundColor:"rgba(0,0,0,0.2)", color:'black', paddingHorizontal:25, marginVertical:5, borderRadius:25}} placeholder="Medicine Name" value={medicineName}  onChangeText={setMedicineName}></TextInput>
                 <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', width:'100%',}}>
-                    <TextInput keyboardType='numeric' placeholderTextColor={'gray'} style={{width:'35%',backgroundColor:"rgba(0,0,0,0.2)", color:'black', paddingHorizontal:15,  marginVertical:5, borderRadius:25}} placeholder="Qty" value={amountDay} onChangeText={(text)=>setAmountDayText(text)}></TextInput>
-                    <TextInput keyboardType='numeric' placeholderTextColor={'gray'}style={{width:'35%',backgroundColor:"rgba(0,0,0,0.2)", color:'black', paddingHorizontal:15, marginVertical:5, borderRadius:25}} placeholder="Days" value={totalDays} onChangeText={(text)=>setTotalDaysText(text)}></TextInput>
+                    <TextInput keyboardType='phone-pad' placeholderTextColor={'gray'} style={{width:'35%',backgroundColor:"rgba(0,0,0,0.2)", color:'black', paddingHorizontal:15,  marginVertical:5, borderRadius:25}} placeholder="Qty" value={amountDay} onChangeText={(text)=>setAmountDayText(text)}></TextInput>
+                    <TextInput keyboardType='phone-pad' placeholderTextColor={'gray'}style={{width:'35%',backgroundColor:"rgba(0,0,0,0.2)", color:'black', paddingHorizontal:15, marginVertical:5, borderRadius:25}} placeholder="Days" value={totalDays} onChangeText={(text)=>setTotalDaysText(text)}></TextInput>
                     <TouchableOpacity
                         style={{ width:'20%',backgroundColor: 'grey', padding: 10, justifyContent:"center", alignItems:"center", borderRadius:10}}
                         onPress={addPrescription}>
@@ -105,8 +102,9 @@ export default function Prescription({navigation}) {
             </View>
     
       </View>
+      : <></>}
         
-
+    {status==="in-progress"?
     <View style={{marginTop:10, backgroundColor:'rgba(255,255,255,1)', padding:10, borderRadius:30, shadowColor: "#000",
                 shadowOffset: {width: 0,height: 2},
                 shadowOpacity: 0.25,
@@ -132,69 +130,78 @@ export default function Prescription({navigation}) {
         </View>
         
     </View>
+    :
+    <View style={{marginTop:10, backgroundColor:'rgba(255,255,255,1)', padding:10, borderRadius:30, shadowColor: "#000",
+                shadowOffset: {width: 0,height: 2},
+                shadowOpacity: 0.25,
+                shadowRadius: 4.84,
+                elevation: 5,}}>
+
+        <View style={{justifyContent:'center', alignItems:'center'}}>
+            <Text style={{ width:'100%', color:'black', paddingHorizontal:15, fontSize:20, marginVertical:5, borderRadius:25}} >Recommendation:   </Text>
+            <Text style={{ width:'100%', backgroundColor:"rgba(0,0,0,0.2)", color:'black', paddingVertical:15, paddingHorizontal:25, marginVertical:5, borderRadius:25}} >Some recommendation</Text>
+            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', width:'100%',}}>
+                <View style={{flexDirection:'row', width:"100%", justifyContent:'space-around', alignItems:"center", marginTop:10}}>
+                    <Text style={{color:'black', fontSize:25, fontWeight:'bold'}}>Follow up</Text>
+                    <View style={{alignItems:"center", padding:10, paddingHorizontal:25, borderRadius:10, backgroundColor:"green"}} onPress={showDatePicker}>
+                    <Text style={{color:"white", fontSize:15}}>Some 25/10/2023</Text>
+                    </View>
+                </View>
+                
+            </View>
+        </View>
+        
+    </View>
+    }
 
     {prescription.length > 0 && 
-      <View
-        style={{ 
-            minHeight:'0%',
-            maxHeight:'40%',
-            borderRadius: 45,
-            overflow: 'hidden',
-            marginTop:10, backgroundColor:'rgba(255,255,255,1)', padding:15, paddingBottom:20, overflow: 'hidden', borderRadius:10, shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 4.84,
-    
-            elevation: 5
-        }}
-        >
-      <ScrollView style={{}}>
+        <View style={{marginVertical:7, backgroundColor:'rgba(255,255,255,1)', padding:10, borderRadius:2, shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4.84,
+        
+        elevation: 5,}}>
+            <View style={{justifyContent:'center', alignItems:'center'}}>
+                <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', width:'100%',}}>
+                    <Text style={{ width:'25%',color:'black', padding:2, marginLeft:15, marginVertical:5, borderRadius:25}} >Medicine</Text>
+                    <Text style={{width:'15%', color:'black', textAlign:'center', padding:2,  marginVertical:5, borderRadius:25}}>Qty/Day</Text>
+                    <Text style={{width:'15%', color:'black', textAlign:'center', padding:2, marginVertical:5, borderRadius:25}}>Total</Text>
+                    <Text
+                        style={{ width:'20%',color:'black', textAlign:'center', padding: 10, justifyContent:"center", alignItems:"center", borderRadius:10}}
+                        onPress={()=>deletePrescription(prescriptionData.key)}>
+                        Action
+                    </Text>
+                </View>
         {prescription.map((prescriptionData, index) => {
-          return (
-            <>
-            <View style={{flexDirection:"column", backgroundColor: 'rgba(0,0,255,0.5)' ,justifyContent:"space-between", width:"100%", padding:10, borderRadius:20, marginBottom:10}}>
-                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:5}}>
-                    <Text style={{ marginRight:35,fontSize: 20, color: 'white'}}>
-                        Medicine:  {prescriptionData.medicine}
-                    </Text>
-                    <Text style={{ marginRight:35,fontSize: 20, color: 'white'}}>
-                        
-                    </Text>
-                    <TouchableOpacity
-                        onPress={() => deletePrescription(prescriptionData.key)}>
-                        <MaterialCommunityIcons name="delete-sweep" size={30} color={'rgba(200,0,0,1)'} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <Text style={{ marginRight:35,fontSize: 20, color: 'white'}}>
-                        Quantity:
-                    </Text>
-                    <Text style={{ marginRight:35,fontSize: 20, color: 'white'}}>
-                        {prescriptionData.amountDay}
-                    </Text>
-                    <Text style={{ marginRight:35,fontSize: 20, color: 'white'}}>
-                        Total Days:
-                    </Text>
-                    <Text style={{ marginRight:35,fontSize: 20, color: 'white'}}>
-                        {prescriptionData.totalDays}
-                    </Text>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                </View>
+            return (
+                <>
             
-            </View>
+                    
+                    
+                        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', width:'100%',}}>
+                            <Text style={{ width:'30%', backgroundColor:"rgba(0,0,0,0.2)", color:'black', padding:15, marginVertical:5, borderRadius:25}} >{prescriptionData.medicine}</Text>
+                            <Text style={{width:'10%',backgroundColor:"rgba(0,0,0,0.2)", color:'black', textAlign:'center', padding:5,  marginVertical:5, borderRadius:25}}>{prescriptionData.amountDay}</Text>
+                            <Text style={{width:'10%',backgroundColor:"rgba(0,0,0,0.2)", color:'black', textAlign:'center', padding:5, marginVertical:5, borderRadius:25}}>{prescriptionData.totalDays}</Text>
+                            <TouchableOpacity
+                                disabled={status!=="in-progress"}
+                                style={{ width:'20%',backgroundColor: 'red', padding: 10, justifyContent:"center", alignItems:"center", borderRadius:10}}
+                                onPress={()=>deletePrescription(prescriptionData.key)}>
+                                <MaterialCommunityIcons name="delete-sweep" size={20} color={'white'} />
+                            </TouchableOpacity>
+                        </View>
+            
             </>
             
-          );
+            );
         })}
-      </ScrollView>
+            </View>
       </View>
     }
       
-    </SafeAreaView>
+    </View>
   );
 }
 

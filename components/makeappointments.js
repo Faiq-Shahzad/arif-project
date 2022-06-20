@@ -8,8 +8,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DropDownPicker from 'react-native-dropdown-picker';
 
-function MakeAppointment({navigation}) {
+function MakeAppointment({route, navigation}) {
 
+  const status = route.params?.status
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(['italy', 'spain', 'barcelona', 'finland']);
@@ -101,7 +102,7 @@ function MakeAppointment({navigation}) {
         
 
         <View style={{alignItems:"center"}}>
-          <Button mode='contained' style={{marginTop:20, width:"80%", fontSize:5, padding:5, borderRadius:50, backgroundColor:"red"}}>Confirm Appointment</Button> 
+          <Button mode='contained' style={{marginTop:20, width:"80%", fontSize:5, padding:5, borderRadius:50, backgroundColor:"red"}}>{console.log(status)} {status==="in-progress"?'Start Diagonosis':'Confirm Appointment'}</Button> 
         </View>
 
 
